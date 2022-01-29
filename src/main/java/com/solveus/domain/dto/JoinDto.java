@@ -21,6 +21,9 @@ public class JoinDto {
     @Email(message= "올바른 이메일 주소를 입력해주세요")
     private String email;
 
+    @NotBlank(message = "아이디를 입력해주세요")
+    private String userID;
+
     @NotBlank(message = "휴대폰 번호를 입력해주세요.")
     @Pattern(regexp = "(01[016789])(\\d{3,4})(\\d{4})", message = "올바른 휴대폰 번호를 입력해주세요.")
     private String phone;
@@ -34,6 +37,7 @@ public class JoinDto {
 
     public User toEntity() {
         User build = User.builder()
+                .userID(userID)
                 .name(name)
                 .email(email)
                 .phone(phone)
@@ -46,8 +50,9 @@ public class JoinDto {
     }
 
     @Builder
-    public JoinDto(String name, String email, String phone,String password, String nickname, String major, String intro) {
+    public JoinDto(String userID, String name, String email, String phone,String password, String nickname, String major, String intro) {
         this.name = name;
+        this.userID = userID;
         this.email = email;
         this.phone = phone;
         this.password = password;

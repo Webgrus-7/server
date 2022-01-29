@@ -22,6 +22,8 @@ public class User {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
+    private String userID;
 
     @Column(nullable = false)
     private String email;
@@ -53,9 +55,10 @@ public class User {
 
 
     @Builder
-    public User(Long id, String name, String email, String phone, String password, String nickname, String major, String intro, String salt) {
+    public User(Long id,String userID, String name, String email, String phone, String password, String nickname, String major, String intro, String salt) {
         this.id = id;
         this.name = name;
+        this.userID = userID;
         this.email = email;
         this.phone = phone;
         this.password = password;

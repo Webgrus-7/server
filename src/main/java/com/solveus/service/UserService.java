@@ -4,7 +4,7 @@ import com.solveus.domain.dto.UserDto;
 import com.solveus.domain.entity.User;
 import com.solveus.domain.repository.UserRepository;
 import com.solveus.exception.ErrorCode;
-import com.solveus.exception.PhoneDuplicateException;
+import com.solveus.exception.UserIDDuplicateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,6 +32,7 @@ public class UserService {
         for(User user: userList){
             UserDto userDto = UserDto.builder()
                     .id(user.getId())
+                    .userID(user.getUserID())
                     .name(user.getName())
                     .phone(user.getPhone())
                     .email(user.getEmail())
@@ -45,11 +46,12 @@ public class UserService {
     }
 
     @Transactional
-    public UserDto getUserByPhone(String phone) {
-        User user = userRepository.findByPhone(phone);
+    public UserDto getUserByUserID(String userID) {
+        User user = userRepository.findByUserID(userID);
 
         UserDto userDto = UserDto.builder()
                 .id(user.getId())
+                .userID(user.getUserID())
                 .name(user.getName())
                 .phone(user.getPhone())
                 .email(user.getEmail())
@@ -63,9 +65,9 @@ public class UserService {
 
     @Transactional
     public User save(User value) {
-        User alreadyUser = userRepository.findByPhone(value.getPhone());
+        User alreadyUser = userRepository.findByUserID(value.getUserID());
         if(alreadyUser!= null){
-            throw new PhoneDuplicateException("phone duplicated", ErrorCode.PHONE_DUPLICATION);
+            throw new UserIDDuplicateException("UserID duplicated", ErrorCode.USERID_DUPLICATION);
         }
         String password = value.getPassword();
         String salt= saltUtil.genSalt();
