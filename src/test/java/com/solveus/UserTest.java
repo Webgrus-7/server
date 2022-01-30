@@ -25,8 +25,7 @@ public class UserTest {
     @Test
     public void save() {
         User user = User.builder()
-                .name("주주")
-                .userID("user1")
+                .userID("user2")
                 .email("kk@gmail.com")
                 .phone("010-1212-2222")
                 .nickname("wnwn")

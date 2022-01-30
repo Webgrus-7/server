@@ -40,7 +40,6 @@ public class UserController {
 
         User user = User.builder()
                 .userID(value.getUserID())
-                .name(value.getName())
                 .email(value.getEmail())
                 .phone(value.getPhone())
                 .nickname(value.getNickname())
