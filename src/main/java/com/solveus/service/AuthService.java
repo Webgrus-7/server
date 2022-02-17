@@ -10,6 +10,7 @@ import com.solveus.exception.ErrorCode;
 import com.solveus.exception.UserIDDuplicateException;
 import com.solveus.security.JwtProvider;
 import io.jsonwebtoken.Claims;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -73,10 +74,10 @@ public class AuthService {
         }
 
         System.out.println(accessToken);
-        return TokenResponse.builder()
-                .ACCESS_TOKEN(accessToken)
-                .REFRESH_TOKEN(refreshToken)
-                .build();
+        TokenResponse token = new TokenResponse();
+        token.setACCESS_TOKEN(accessToken);
+        token.setREFRESH_TOKEN(refreshToken);
+        return token;
 
     }
 
@@ -115,10 +116,10 @@ public class AuthService {
                 accessToken = null;
             }
         //}
-        return TokenResponse.builder()
-                .ACCESS_TOKEN(accessToken)
-                .REFRESH_TOKEN(refreshToken)
-                .build();
+        TokenResponse token = new TokenResponse();
+        token.setACCESS_TOKEN(accessToken);
+        token.setREFRESH_TOKEN(refreshToken);
+        return token;
     }
 
     // refreshToken null 일 경우 -> 재 로그인 필요

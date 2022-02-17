@@ -1,14 +1,11 @@
 package com.solveus.domain.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class LoginDto {
     private String userID;
     private String password;
