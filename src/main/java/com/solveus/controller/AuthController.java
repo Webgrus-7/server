@@ -5,7 +5,7 @@ import com.solveus.domain.dto.LoginDto;
 import com.solveus.domain.dto.TokenResponse;
 import com.solveus.domain.entity.User;
 import com.solveus.service.AuthService;
-import com.solveus.service.UserService;
+
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
+
 
 @RequiredArgsConstructor
 @RestController
