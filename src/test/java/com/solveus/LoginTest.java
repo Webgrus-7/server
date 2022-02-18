@@ -34,10 +34,7 @@ public class LoginTest {
 
     @Test
     public void doLogin() throws Exception {
-        LoginDto userRequest = LoginDto.builder()
-                .userID("user1")
-                .password("solve1234").build();
-
+        LoginDto userRequest = new LoginDto("user1", "solve1234");
 
         User user = userRepository.findByUserID(userRequest.getUserID())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
