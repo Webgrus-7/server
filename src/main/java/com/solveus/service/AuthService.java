@@ -12,6 +12,7 @@ import com.solveus.security.JwtProvider;
 import io.jsonwebtoken.Claims;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -126,4 +127,17 @@ public class AuthService {
     // refreshToken null 일 경우 -> 재 로그인 필요
     // refreshToken 유효할 경우 재로그인 필요 없이 issueAccessToken 호출 통해 재발급
 
+    @Transactional
+    public User find_user(HttpServletRequest request) throws Exception {
+        String accessToken = jwtProvider.resolveAccessToken(request);
+        if(jwtProvider.isValidAccessToken(accessToken)){ //accessToken이 유효한 경우
+            Claims accessClaims = jwtProvider.getClaimsFromAccessToken(accessToken);
+            String userID = (String) accessClaims.get("userID");
+
+            User user = userRepository.findByUserID(userID)
+                    .orElseThrow(() -> new UsernameNotFoundException("존재하지 않는 사용자입니다."));
+
+            return user;
+        }else throw  new Exception("토큰이 만료되었습니다.");
+    }
 }
