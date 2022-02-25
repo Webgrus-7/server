@@ -31,14 +31,15 @@ public class AuthService {
 
     @Transactional
     public User save(User value) {
-        User alreadyUser = userRepository.findByUserID(value.getUserID())
-                .orElseThrow(()-> new UserIDDuplicateException("UserID duplicated", ErrorCode.USERID_DUPLICATION));
-
-        String password = value.getPassword();
-        String salt= saltUtil.genSalt();
-        value.setSalt(salt);
-        value.setPassword(saltUtil.encodePassword(salt, password));
-        value.setRoles(Collections.singletonList("ROLE_USER"));
+        Optional<User> alreadyUser = userRepository.findByUserID(value.getUserID());
+        if(alreadyUser.isPresent())  throw new UserIDDuplicateException("UserID duplicated", ErrorCode.USERID_DUPLICATION);
+        else {
+            String password = value.getPassword();
+            String salt = saltUtil.genSalt();
+            value.setSalt(salt);
+            value.setPassword(saltUtil.encodePassword(salt, password));
+            value.setRoles(Collections.singletonList("ROLE_USER"));
+        }
 
         return userRepository.save(value);
     }
@@ -50,7 +51,7 @@ public class AuthService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
 
         if(!passwordEncoder.matches(userRequest.getPassword(), user.getPassword())) {
-            throw new Exception("비밀번호가 일치하지 않습니다.");
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
         }
 
         String accessToken = jwtProvider.createAccessToken(user.getUserID());

@@ -42,8 +42,8 @@ public class JwtProvider {
     // 객체 초기호, key를 Base64로 인코딩
     @PostConstruct
     protected void init() {
-        System.out.println("ACCESS_KEY: " + ACCESS_KEY);
-        System.out.println("REFRESH_KEY: " + REFRESH_KEY);
+//        System.out.println("ACCESS_KEY: " + ACCESS_KEY);
+//        System.out.println("REFRESH_KEY: " + REFRESH_KEY);
         ACCESS_KEY = Base64.getEncoder().encodeToString(ACCESS_KEY.getBytes());
         REFRESH_KEY = Base64.getEncoder().encodeToString(REFRESH_KEY.getBytes());
     }
