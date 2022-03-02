@@ -5,11 +5,13 @@ import com.solveus.domain.dto.ProblemDto;
 import com.solveus.domain.entity.Static;
 import com.solveus.domain.repository.StaticRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.parsing.Problem;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +27,8 @@ public class ProblemService {
                 .id(value.getId())
                 .creator_id(value.getCreator_id().getId())
                 .title(value.getTitle())
+                .content(value.getContent())
+                .field(value.getField())
                 .type(value.getType())
                 .view_1(value.getView_1())
                 .view_2(value.getView_2())
@@ -48,6 +52,8 @@ public class ProblemService {
                     .id(s.getId())
                     .creator_id(s.getCreator_id().getId())
                     .title(s.getTitle())
+                    .content(s.getContent())
+                    .field(s.getField())
                     .type(s.getType())
                     .view_1(s.getView_1())
                     .view_2(s.getView_2())
@@ -60,5 +66,15 @@ public class ProblemService {
             result.add(show);
         }
         return result;
+    }
+
+    @Transactional
+    public Integer addLikeCount(Long problemID) {
+        Static problem = staticRepository.findById(problemID)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 문제입니다."));
+
+        problem.setLike_count(problem.getLike_count() + 1);
+        return problem.getLike_count();
+
     }
 }

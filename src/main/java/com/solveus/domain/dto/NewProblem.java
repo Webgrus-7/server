@@ -11,6 +11,8 @@ import lombok.*;
 public class NewProblem {
 
     private String title;
+    private String content;
+    private String field;
     private Integer type;
     private String view_1;
     private String view_2;
@@ -23,6 +25,8 @@ public class NewProblem {
     public Static toEntity(){
         Static build = Static.builder()
                 .title(title)
+                .content(content)
+                .field(field)
                 .type(type)
                 .view_1(view_1)
                 .view_2(view_2)
@@ -36,8 +40,10 @@ public class NewProblem {
     }
 
     @Builder
-    public NewProblem(String title, Integer type, String view_1, String view_2, String view_3, String view_4, String view_5, Integer point, Integer answer) {
+    public NewProblem(String title,String content,String field, Integer type, String view_1, String view_2, String view_3, String view_4, String view_5, Integer point, Integer answer) {
         this.title = title;
+        this.content = content;
+        this.field = field;
         this.type = type;
         this.view_1 = view_1;
         this.view_2 = view_2;
