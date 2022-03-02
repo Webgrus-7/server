@@ -11,10 +11,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -41,6 +38,8 @@ public class ProblemController {
         Static problem = Static.builder()
                 .creator_id(creator_id)
                 .title(value.getTitle())
+                .field(value.getField())
+                .content(value.getContent())
                 .type(value.getType())
                 .view_1(value.getView_1())
                 .view_2(value.getView_2())
@@ -69,6 +68,8 @@ public class ProblemController {
                     .id(s.getId())
                     .creator_id(s.getCreator_id().getId())
                     .title(s.getTitle())
+                    .content(s.getContent())
+                    .field(s.getField())
                     .type(s.getType())
                     .view_1(s.getView_1())
                     .view_2(s.getView_2())
@@ -91,6 +92,17 @@ public class ProblemController {
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(problemService.getAllProblems());
+    }
+
+    @RequestMapping(value = "/like/{problemID}", method = RequestMethod.POST)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "ACCESS_TOKEN", required = true, allowEmptyValue = false, paramType = "header", dataTypeClass = String.class ),
+            @ApiImplicitParam(name = "REFRESH_TOKEN", required = true, allowEmptyValue = false, paramType = "header", dataTypeClass = String.class)
+    })
+    public ResponseEntity<Integer> likeCount(HttpServletRequest request ,@PathVariable("problemID") Long problemID) throws  Exception {
+        Integer like_count = problemService.addLikeCount(problemID);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(like_count);
     }
 
 }

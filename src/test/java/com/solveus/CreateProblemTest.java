@@ -31,6 +31,8 @@ public class CreateProblemTest {
         Static problem = Static.builder()
                 .creator_id(user)
                 .title("이문제 답??? ")
+                .content("내용ㅇ용")
+                .field("분야야")
                 .type(1)
                 .view_1("답답답")
                 .view_2(null)
@@ -41,7 +43,7 @@ public class CreateProblemTest {
                 .point(5)
                 .build();
 
-        System.out.println(staticRepository.save(problem));
+        System.out.println(staticRepository.save(problem).getLike_count());
     }
 
 }
