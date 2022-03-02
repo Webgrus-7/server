@@ -21,9 +21,10 @@ public class ProblemDto {
     private String view_5;
     private Integer point;
     private Integer answer;
+    private Integer like_count;
 
     @Builder
-    public ProblemDto(Long id, Long creator_id, String title,String content,String field,Integer type, String view_1, String view_2, String view_3, String view_4, String view_5, Integer point, Integer answer) {
+    public ProblemDto(Long id, Long creator_id, String title,String content,String field,Integer type, String view_1, String view_2, String view_3, String view_4, String view_5, Integer point, Integer answer, Integer like_count) {
         this.id = id;
         this.creator_id = creator_id;
         this.title = title;
@@ -37,5 +38,6 @@ public class ProblemDto {
         this.view_5 = view_5;
         this.point = point;
         this.answer = answer;
+        this.like_count = like_count;
     }
 }
