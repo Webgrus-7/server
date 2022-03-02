@@ -8,6 +8,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -70,6 +72,9 @@ public class Static {
     @ManyToOne
     @JoinColumn(name = "creator_id")
     private User creator_id;
+
+    @OneToMany(mappedBy = "problemID")
+    private List<LikeList> like_list = new ArrayList<LikeList>();
 
     @CreatedDate
     @Column(updatable = false)

@@ -100,9 +100,13 @@ public class ProblemController {
             @ApiImplicitParam(name = "REFRESH_TOKEN", required = true, allowEmptyValue = false, paramType = "header", dataTypeClass = String.class)
     })
     public ResponseEntity<Integer> likeCount(HttpServletRequest request ,@PathVariable("problemID") Long problemID) throws  Exception {
-        Integer like_count = problemService.addLikeCount(problemID);
+        User userID = authService.find_user(request);
+        Integer like_count = problemService.addLikeCount(userID,problemID);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(like_count);
     }
+
+
+
 
 }
