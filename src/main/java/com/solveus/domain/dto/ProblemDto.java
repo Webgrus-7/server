@@ -14,6 +14,7 @@ public class ProblemDto {
     private Long id;
     private Long creator_id;
     private String creator_nick;
+    private String creator_userID;
     private String title;
     private String content;
     private String field;
@@ -29,10 +30,11 @@ public class ProblemDto {
     private LocalDateTime updated;
 
     @Builder
-    public ProblemDto(Long id, Long creator_id, String creator_nick,String title,String content,String field,Integer type, String view_1, String view_2, String view_3, String view_4, String view_5, Integer point, Integer answer, Integer like_count, LocalDateTime updated) {
+    public ProblemDto(Long id, Long creator_id, String creator_nick,String creator_userID,String title,String content,String field,Integer type, String view_1, String view_2, String view_3, String view_4, String view_5, Integer point, Integer answer, Integer like_count, LocalDateTime updated) {
         this.id = id;
         this.creator_id = creator_id;
         this.creator_nick = creator_nick;
+        this.creator_userID = creator_userID;
         this.title = title;
         this.content = content;
         this.field = field;

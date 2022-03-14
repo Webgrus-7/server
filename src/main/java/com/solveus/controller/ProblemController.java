@@ -80,6 +80,7 @@ public class ProblemController {
                 .body(problemService.getAllProblems());
     }
 
+    // 문제 좋아요/ 좋아요 취소
     @RequestMapping(value = "/like/{problemID}", method = RequestMethod.POST)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "ACCESS_TOKEN", required = true, allowEmptyValue = false, paramType = "header", dataTypeClass = String.class ),

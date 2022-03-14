@@ -28,6 +28,7 @@ public class ProblemService {
                 .id(value.getId())
                 .creator_id(value.getCreator_id().getId())
                 .creator_nick(value.getCreator_id().getNickname())
+                .creator_userID(value.getCreator_id().getUserID())
                 .title(value.getTitle())
                 .content(value.getContent())
                 .field(value.getField())
