@@ -81,6 +81,10 @@ public class User implements UserDetails {
     @Builder.Default
     private List<FollowRelation> following_list = new ArrayList<FollowRelation>();
 
+    @OneToMany(mappedBy = "userID")
+    @Builder.Default
+    private List<SolvedList> solved_list = new ArrayList<>();
+
 
 
 

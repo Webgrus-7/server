@@ -2,10 +2,13 @@ package com.solveus.service;
 
 import com.solveus.domain.dto.NewProblem;
 import com.solveus.domain.dto.ProblemDto;
+import com.solveus.domain.dto.SolveDto;
 import com.solveus.domain.entity.LikeList;
+import com.solveus.domain.entity.SolvedList;
 import com.solveus.domain.entity.Static;
 import com.solveus.domain.entity.User;
 import com.solveus.domain.repository.LikeListRepository;
+import com.solveus.domain.repository.SolvedListRepository;
 import com.solveus.domain.repository.StaticRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.parsing.Problem;
@@ -22,6 +25,7 @@ public class ProblemService {
 
     private final StaticRepository staticRepository;
     private final LikeListRepository likeListRepository;
+
 
     public ProblemDto makeProblemDto(Static value) {
         ProblemDto result = ProblemDto.builder()
@@ -41,6 +45,7 @@ public class ProblemService {
                 .point(value.getPoint())
                 .answer(value.getAnswer())
                 .like_count(value.getLike_count())
+                .solve_count(value.getSolved_count())
                 .updated(value.getUpdated())
                 .build();
         return result;
@@ -91,4 +96,6 @@ public class ProblemService {
         return problem.getLike_count();
 
     }
+
+
 }

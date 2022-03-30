@@ -27,10 +27,11 @@ public class ProblemDto {
     private Integer point;
     private Integer answer;
     private Integer like_count;
+    private Integer solve_count;
     private LocalDateTime updated;
 
     @Builder
-    public ProblemDto(Long id, Long creator_id, String creator_nick,String creator_userID,String title,String content,String field,Integer type, String view_1, String view_2, String view_3, String view_4, String view_5, Integer point, Integer answer, Integer like_count, LocalDateTime updated) {
+    public ProblemDto(Long id, Long creator_id, String creator_nick,String creator_userID,String title,String content,String field,Integer type, String view_1, String view_2, String view_3, String view_4, String view_5, Integer point, Integer answer, Integer like_count,Integer solve_count, LocalDateTime updated) {
         this.id = id;
         this.creator_id = creator_id;
         this.creator_nick = creator_nick;
@@ -47,6 +48,7 @@ public class ProblemDto {
         this.point = point;
         this.answer = answer;
         this.like_count = like_count;
+        this.solve_count = solve_count;
         this.updated = updated;
     }
 }
