@@ -2,6 +2,7 @@ package com.solveus.controller;
 
 import com.solveus.domain.dto.NewProblem;
 import com.solveus.domain.dto.ProblemDto;
+import com.solveus.domain.dto.SolveDto;
 import com.solveus.domain.entity.Static;
 import com.solveus.domain.entity.User;
 import com.solveus.service.AuthService;
@@ -92,6 +93,7 @@ public class ProblemController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(like_count);
     }
+
 
 
 
