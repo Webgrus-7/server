@@ -21,7 +21,6 @@ import java.util.Set;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/solved")
 public class SolveController {
 
 
@@ -29,7 +28,7 @@ public class SolveController {
     private final SolveService solveService;
 
     // 문제 풀기 완료 후 저장
-    @RequestMapping(value = "/{problemID}", method = RequestMethod.POST)
+    @RequestMapping(value = "solved/{problemID}", method = RequestMethod.POST)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "ACCESS_TOKEN", required = true, allowEmptyValue = false, paramType = "header", dataTypeClass = String.class),
             @ApiImplicitParam(name = "REFRESH_TOKEN", required = true, allowEmptyValue = false, paramType = "header", dataTypeClass = String.class)
@@ -42,12 +41,12 @@ public class SolveController {
     }
 
     // 문제에 대한 사용자의 풀기 기록 리스트
-    @RequestMapping(value = "/{problemID}", method = RequestMethod.GET)
+    @RequestMapping(value = "/solved/problem", method = RequestMethod.GET)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "ACCESS_TOKEN", required = true, allowEmptyValue = false, paramType = "header", dataTypeClass = String.class),
             @ApiImplicitParam(name = "REFRESH_TOKEN", required = true, allowEmptyValue = false, paramType = "header", dataTypeClass = String.class)
     })
-    public ResponseEntity<List<SolveInfoDto>> storeProblemSolved(HttpServletRequest request, @RequestParam("problemID") Long problemID) throws Exception {
+    public ResponseEntity<List<SolveInfoDto>> storeProblemSolved(HttpServletRequest request, @RequestParam Long problemID) throws Exception {
         User userID = authService.find_user(request);
 
         List<SolveInfoDto> result = solveService.getUserAndProblemSolved(userID, problemID);
@@ -57,7 +56,7 @@ public class SolveController {
     }
 
     // 사용자의 모든 문제 푼 list
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/solved", method = RequestMethod.GET)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "ACCESS_TOKEN", required = true, allowEmptyValue = false, paramType = "header", dataTypeClass = String.class),
             @ApiImplicitParam(name = "REFRESH_TOKEN", required = true, allowEmptyValue = false, paramType = "header", dataTypeClass = String.class)
