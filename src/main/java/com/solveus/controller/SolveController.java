@@ -28,7 +28,7 @@ public class SolveController {
     private final SolveService solveService;
 
     // 문제 풀기 완료 후 저장
-    @RequestMapping(value = "solved/{problemID}", method = RequestMethod.POST)
+    @RequestMapping(value = "/solved/{problemID}", method = RequestMethod.POST)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "ACCESS_TOKEN", required = true, allowEmptyValue = false, paramType = "header", dataTypeClass = String.class),
             @ApiImplicitParam(name = "REFRESH_TOKEN", required = true, allowEmptyValue = false, paramType = "header", dataTypeClass = String.class)
