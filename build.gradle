@@ -39,8 +39,10 @@ dependencies {
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-    // https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api
-    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
+
+    // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+
 
 
 
