@@ -3,7 +3,6 @@ package com.solveus.domain.dto;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 @Setter
