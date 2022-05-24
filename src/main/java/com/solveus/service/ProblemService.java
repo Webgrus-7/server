@@ -1,17 +1,13 @@
 package com.solveus.service;
 
-import com.solveus.domain.dto.NewProblem;
 import com.solveus.domain.dto.ProblemDto;
-import com.solveus.domain.dto.SolveDto;
+import com.solveus.domain.dto.UserDto;
 import com.solveus.domain.entity.LikeList;
-import com.solveus.domain.entity.SolvedList;
 import com.solveus.domain.entity.Static;
 import com.solveus.domain.entity.User;
 import com.solveus.domain.repository.LikeListRepository;
-import com.solveus.domain.repository.SolvedListRepository;
 import com.solveus.domain.repository.StaticRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.parsing.Problem;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -25,6 +21,7 @@ public class ProblemService {
 
     private final StaticRepository staticRepository;
     private final LikeListRepository likeListRepository;
+   // private final FollowService followService;
 
 
     public ProblemDto makeProblemDto(Static value) {
@@ -95,6 +92,23 @@ public class ProblemService {
         }
         return problem.getLike_count();
 
+    }
+
+    @Transactional
+    public List<ProblemDto> getAllFollowingProblem(List<UserDto> allFollowingUsers) {
+
+        List<Static> problems = new ArrayList<>();
+        // 팔로잉한 사용자가 만든 모든 문제 목록
+        for(UserDto following : allFollowingUsers) {
+            problems.addAll(staticRepository.findAllByCreator_id(following.getId()));
+        }
+
+        List<ProblemDto> problemDtos = new ArrayList<>();
+        for(Static stat : problems) {
+            problemDtos.add(makeProblemDto(stat));
+        }
+
+        return problemDtos;
     }
 
 

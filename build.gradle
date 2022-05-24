@@ -40,17 +40,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
 
-    // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
-    implementation 'javax.xml.bind:jaxb-api:2.3.1'
-
-
-
-
     //spring security
     implementation 'org.springframework.boot:spring-boot-starter-security:2.6.3'
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
-
-
 
 
 }
